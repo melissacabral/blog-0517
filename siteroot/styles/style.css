@@ -1,0 +1,105 @@
+html{
+	box-sizing:border-box;
+	background: #C33764;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+html *{
+	box-sizing: inherit;
+}
+body{
+	background: #f6f6f3;
+    font-family: "Libre Franklin", "Arial", sans-serif;
+    color: #363D3D;
+    margin: 0;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+.header{
+	 background-image: URL("http://unsplash.it/1000/650?random");
+    background-position: center center;
+    background-size:cover;
+    background-color: gray ;
+  
+    min-height:40vh;
+    padding:25vh 1em 6vh;
+    text-align: center;
+    position:relative;
+}
+.header:before{
+	content: '';
+	display:block;
+	position:absolute;
+	opacity:.65;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background: #C33764;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.header h1{
+	color:white;
+	font-size:4rem;
+	text-shadow:;
+	position: relative;
+	z-index:999;
+}
+.content{
+	width:65%;
+	float:right;
+	padding:1em;
+}
+.sidebar{
+	width:35%;
+	float:left;
+	padding:1em;
+}
+.footer{
+	clear:both;
+	background-color: rgba(255,255,255,.3);
+	padding: 1em;
+}
+.commentform{
+	max-width:500px;
+}
+/*
+==Forms
+ */
+label{
+	display:block;
+	margin:1em 0 .2em;
+}
+input, textarea, select{
+	width:100%;
+	
+	padding:.25em;
+	font-size:120%;
+}
+input[type=submit]{
+	background: #C33764;  
+	color:white;
+	border:none;
+	width:auto;
+	display:block;
+	margin:1em 0;
+	padding:.25em 1em;
+	font-family: inherit;
+	transition: background .3s ease-out;
+}
+input[type=submit]:hover,
+input[type=submit]:focus{
+	background-color: #1D2671;
+}
+textarea{
+	min-height:6em;
+	resize: vertical;
+}
+.feedback{
+	background-color: wheat;
+	padding:1rem;
+}
