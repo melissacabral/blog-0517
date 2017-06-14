@@ -8,6 +8,14 @@ function convert_date( $timestamp ){
 }
 
 /*
+Convert any Datetime into a human readable format
+ */
+function rss_date( $timestamp ){
+	$date = new DateTime( $timestamp );
+	return $date->format('r');
+}
+
+/*
 Count the number of comments on any post
 $post_id - int. any valid post ID. 
 $one - string. text to show if there's one comment

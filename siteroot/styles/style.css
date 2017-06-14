@@ -103,3 +103,37 @@ textarea{
 	background-color: wheat;
 	padding:1rem;
 }
+
+/*
+==pagination
+ */
+.pagination{
+	margin:1em 0;
+}
+.pagination a{
+	display: inline-block;
+	background-color: #eee;
+	border-radius: .2em;
+	padding:.25em .8em;
+	text-decoration: none;
+	color:black;
+}
+/* ajax loader */
+#display-area{
+	position: relative;
+}
+.loading:after {
+ 	content: '';
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: rgba(0,0,0,.2);
+    background-image: url(../images/spin.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+

@@ -12,6 +12,9 @@ if( $db->connect_errno > 0 ){
 	die('Error connecting to database');
 }
 
+//store our security salt in a constant - these are for strengthening out login system. If you change the salt, every password becomes invalid.
+define( 'SALT', 'tgbfy786ibnv35t#&)revgnbjk4657#679565bvsfd5rfwhn34e6' );
+
 
 
 //no close php
