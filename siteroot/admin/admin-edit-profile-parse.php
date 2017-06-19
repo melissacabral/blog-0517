@@ -77,7 +77,20 @@ if( $_POST['did_upload'] ){
 		if($didcreate){
 			$user_id = $logged_in_user['user_id'];
 			
-			
+			//DELETE OLD FILE
+			//look up the old image name
+			$query_oldfile = "SELECT profile_pic FROM users where user_id = $user_id LIMIT 1";
+			$result_oldfile = $db->query($query_oldfile);
+			if($result_oldfile->num_rows == 1){
+				$row_oldfile = $result_oldfile->fetch_assoc();
+				foreach ($sizes as $size_name => $size_width) {
+               		 //get filepath of old file
+					echo $old_file = '../uploads/'.$row_oldfile['profile_pic'].'_'.$size_name.'.jpg';
+                 //Delete the file from the directory with unlink()
+					@unlink($old_file);
+				}
+			}
+			//END DELETE OLD FILE
 			
 			$query = "UPDATE users
 			SET profile_pic = '$randomsha'
