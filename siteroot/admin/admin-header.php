@@ -1,4 +1,5 @@
 <?php 
+error_reporting( E_ALL & ~E_NOTICE ); 
 session_start();
 require('../db-config.php');
 include_once('../functions.php');
@@ -15,22 +16,21 @@ if( isset($_SESSION['user_id']) AND isset($_SESSION['secret_key']) ){
 			LIMIT 1";
 	$result = $db->query($query);
 	if( !$result ){
-		//TODO: for testing, show a message if bad query. change this to a redirect later.
-		die('bad db result');
+		//die('bad db result');
+		header('Location:../login.php?e=db');
 	}
 
 	if($result->num_rows == 1){
 		//success - we have a logged in user! Set up the user info for later use
 		$logged_in_user = $result->fetch_assoc();
 	}else{
-		//TODO: error - credentials don't match anyone in the db.
-		//change this to a redirect later.
-		die('not found in db');
+		//die('not found in db');
+		header('Location:../login.php?e=not_found');
 	}
 
 }else{
 	//no session vars present - send them to login form
-	header('Location:../login.php');
+	header('Location:../login.php?e=no_vars');
 }
 ?>
 <!doctype html>
@@ -46,7 +46,7 @@ if( isset($_SESSION['user_id']) AND isset($_SESSION['secret_key']) ){
 	<header role="banner">
 		<h1>Admin Panel</h1>
 		<ul class="utilities">
-			<li class="users"><a href="#">My Account</a></li>
-			<li class="logout warn"><a href="">Log Out</a></li>
+			<li class="users"><a href="admin-edit-profile.php"><?php echo $logged_in_user['username']; ?></a></li>
+			<li class="logout warn"><a href="../login.php?action=logout">Log Out</a></li>
 		</ul>
 	</header>

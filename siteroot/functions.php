@@ -64,14 +64,28 @@ function clean_int( $dirty ){
 	return mysqli_real_escape_string($db, filter_var( $dirty, FILTER_SANITIZE_NUMBER_INT ));
 }
 
+function clean_boolean( $dirty ){
+	global $db;
+	$clean = mysqli_real_escape_string($db, filter_var( $dirty, FILTER_SANITIZE_NUMBER_INT ));
+	//if the value is anything other than 1, change it to ZERO.
+	if($clean != 1){
+		$clean = 0;
+	}
+	return $clean;
+}
+
 
 /*
 Display the HTML for success or error messages, with a list of errors if needed
  */
 function show_feedback( $message, $list ){
 	if( isset( $message ) ){
+		$class='success';
+		if(!empty( $list )){
+			$class='error';
+		}
 		?>
-		<div class="feedback">
+		<div class="feedback <?php echo $class; ?>">
 			<b><?php echo $message; ?></b>
 
 			<?php //if the list is not empty, show it
@@ -87,5 +101,51 @@ function show_feedback( $message, $list ){
 		</div>
 		<?php
 	} //end if 
+}
+
+/*
+Display a dropdown menu of all categories
+$current = int.  the ID of the category that you want to mark "selected" (optional)
+ */
+function category_dropdown( $current = 0 ){
+	global $db;
+	$query = "SELECT * FROM categories";
+	$result = $db->query($query);
+	if( $result->num_rows >= 1 ){
+	?>
+	<select name="category_id" id="the_cat">
+		<?php while( $row = $result->fetch_assoc() ){ ?>
+		<option value="<?php echo $row['category_id']; ?>" <?php 
+			if( $current == $row['category_id'] ){ 
+				echo 'selected'; 
+			} ?>>
+			<?php echo $row['name']; ?>
+		</option>
+		<?php } ?>
+	</select>
+	<?php
+	}else{
+		echo 'No Categories to Show';
+	}
+}
+
+/*
+Display Any user's picture at any size (thumb, med or large)
+*/
+function show_profile_pic( $user_id, $size = 'thumb_img' ){
+	global $db;
+	$query = "SELECT profile_pic FROM users
+			WHERE user_id = $user_id
+			LIMIT 1";
+	$result = $db->query($query);
+	if( $result->num_rows == 1 ){
+		$row = $result->fetch_assoc();
+		if( $row['profile_pic'] == '' ){
+			echo '<img src="http://localhost/melissa-php-0517/blog/siteroot/images/default.png" class="profile_pic default_pic">';
+		}else{
+			//show the image
+			echo '<img src="http://localhost/melissa-php-0517/blog/siteroot/uploads/' . $row['profile_pic'] . '_' . $size . '.jpg" alt="Profile Picture" class="profile_pic">';
+		}
+	}
 }
 //no close php

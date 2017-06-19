@@ -210,6 +210,71 @@ form input[type=submit] {
   border-radius: .5em;
 }
 
+/* feedback */
+.error {
+  background-color: #ffe9e0;
+  border-color: #ffc4ad;
+}
+
+label.error {
+  padding: .2em .5em;
+}
+
+.feedback {
+  background: #fcfae6;
+  color: #857a11;
+  margin: 1em;
+  padding: .5em .5em .5em 2em;
+  border: solid 1px khaki;
+}
+.feedback:before {
+  content: "";
+  font-family: fontawesome;
+  color: #e4d232;
+  margin-left: -1.5em;
+  margin-right: .5em;
+}
+.feedback li:before {
+  border-left-color: #f6f0b9;
+}
+.feedback.error {
+  background: #ffe9e0;
+  color: #942a00;
+  margin: 1em;
+  padding: .5em .5em .5em 2em;
+  border: solid 1px lightsalmon;
+}
+.feedback.error:before {
+  content: "";
+  font-family: fontawesome;
+  color: #ff5714;
+  margin-left: -1.5em;
+  margin-right: .5em;
+}
+.feedback.error li:before {
+  border-left-color: #ffc4ad;
+}
+.feedback.success {
+  background: #98eee6;
+  color: #08322e;
+  margin: 1em;
+  padding: .5em .5em .5em 2em;
+  border: solid 1px turquoise;
+}
+.feedback b{
+  color:inherit;
+}
+.feedback.success:before {
+  content: "";
+  font-family: fontawesome;
+  color: #1aa093;
+  margin-left: -1.5em;
+  margin-right: .5em;
+}
+.feedback.success li:before {
+  border-left-color: #6ce7db;
+}
+
 /* tables */
 table {
   border-collapse: collapse;

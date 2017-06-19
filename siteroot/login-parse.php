@@ -15,10 +15,13 @@ if( $_GET['action'] == 'logout' ){
 			);
 	}
 	session_destroy();
-	//erase all session vars
-	$_SESSION['loggedin'] = false;
-	//unset all cookies
-	setcookie( 'loggedin', false, time() -9999999 );
+	
+	//erase all session vars and cookies
+	$_SESSION['user_id'] = '';
+	setcookie( 'user_id', '', time() -9999999 );
+
+	$_SESSION['secret_key'] = '';
+	setcookie( 'secret_key', '', time() -9999999 );
 }//end of logout action
 
 //if the form was submitted, parse it
